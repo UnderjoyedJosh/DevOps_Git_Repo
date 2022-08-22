@@ -1,18 +1,23 @@
 pipeline {
     agent {
-        docker { image 'python:latest'}
+        label 'docker'
     }
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                sh 'python -m pip install -r requirements.txt'
+                echo 'Building...'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                docker { 
+                    label 'docker'
+                    image 'python:latest'
+                }
+                echo 'Building..'
+                sh 'python -m pip install -r requirements.txt'
                 sh 'python tests.py'
             }
         }
