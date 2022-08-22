@@ -1,7 +1,9 @@
-*.txt
-
 ToDo.txt
 
 images/
 
 .DS_Store
+
+*pycache*
+
+*test-reports*
