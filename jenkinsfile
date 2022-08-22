@@ -1,27 +1,11 @@
 pipeline {
-    agent none
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-            }
-        }
         stage('Test') {
-            agent {
-                docker { 
-                    image 'python:latest'
-                    label 'docker'
-                }
-                sh 'python -m pip install -r requirements.txt'
-            }
             steps {
-                echo 'Testing..'
-                sh 'python tests.py'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'node --version'
             }
         }
     }
