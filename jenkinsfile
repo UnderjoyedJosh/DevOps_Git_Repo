@@ -1,6 +1,5 @@
 pipeline {
     agent none
-
     stages {
         stage('Build') {
             steps {
@@ -10,8 +9,8 @@ pipeline {
         stage('Test') {
             agent {
                 docker { 
-                    label 'docker'
                     image 'python:latest'
+                    label 'docker'
                 }
                 sh 'python -m pip install -r requirements.txt'
             }
